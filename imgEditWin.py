@@ -260,7 +260,7 @@ class imgEditWin:
         if not path:
             suf = Config.get("imageSuffix")  # 许可后缀
             path = tk.filedialog.askopenfilename(
-                title='选择预览图片', fitletypes=[("图片", suf)])
+                title='选择预览图片', filetypes=[("图片", suf)])
             self.win.lift()  # 窗口提到最前
             if not path:
                 return
