@@ -10,7 +10,7 @@ class imgProssing:
     def __init__(self):
         self.img = {
             "raw": None,  # 0. 原始图像
-            # "manualCut": None,  # 1. 手动裁剪
+            "manualCut": None,  # 1. 手动裁剪
             # "binary": None,  # 2.2. 二值化
             # "borderCut": None,  # 2. 边缘裁剪
             "output": None,  # 2. 输出
@@ -28,7 +28,7 @@ class imgProssing:
             if shape[0] == manualCutApply[1] and shape[1] == manualCutApply[0]:  # 符合适用分辨率
                 area = Config.get("manualCutArea")
                 img = img[area[0]:area[1], area[2]:area[3]]
-            # self.img["manualCut"] = img
+        self.img["manualCut"] = img
 
         # 2. 裁剪边缘
         self.border = None
@@ -61,7 +61,7 @@ class imgProssing:
                           np.max(borderX) if isCB[3] else shape[1])
             self.border = border
             # 2.4. 裁剪
-            img = self.img["raw"][border[0]:border[1], border[2]:border[3]]
+            img = self.img["manualCut"][border[0]:border[1], border[2]:border[3]]
             # self.img["borderCut"] = img
 
         # 3. 重设大小

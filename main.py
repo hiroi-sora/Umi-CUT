@@ -12,10 +12,9 @@ import tkinter as tk
 import tkinter.filedialog
 from tkinter import Variable, ttk
 from windnd import hook_dropfiles  # 文件拖拽
-from pyperclip import copy as pyperclipCopy  # 剪贴板
 from webbrowser import open as webOpen  # “关于”面板打开项目网址
 
-ProjectVer = "1.0.0"  # 版本号
+ProjectVer = "1.0.1"  # 版本号
 ProjectName = f"Umi-CUT 图片裁剪/去黑边 v{ProjectVer}"  # 名称
 ProjectWeb = "https://github.com/hiroi-sora/Umi-CUT"
 

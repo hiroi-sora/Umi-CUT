@@ -7,7 +7,7 @@
 
 ## 下载
 
-[Umi-CUT 批量图片转文字 v1.0.0](https://github.com/hiroi-sora/Umi-CUT/releases/tag/v1.0)
+[Umi-CUT 批量图片转文字 v1.0](https://github.com/hiroi-sora/Umi-CUT/releases/tag/v1.0)
 
 ## 系统支持
 
@@ -81,5 +81,9 @@ Python用户：下载源码，安装好Opencv等所需模块。
   ```pyinstaller -F -w -i icon/icon.ico -n "Umi-CUT 批量图片去黑边" main.py```
 
 ## 更新日志
+
+##### v1.0.1 `2022.4.19`
+
+- 修复了漏洞：手动裁剪与去黑边同时进行时可能发生错位偏移。
 
 ##### v1.0.0 `2022.4.15`
