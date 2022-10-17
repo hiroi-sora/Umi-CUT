@@ -7,13 +7,13 @@
 
 ## 下载
 
-[Umi-CUT 批量图片转文字 v1.0](https://github.com/hiroi-sora/Umi-CUT/releases/tag/v1.0)
+[Umi-CUT 批量图片转文字 v1.0.2](https://github.com/hiroi-sora/Umi-CUT/releases/tag/v1.0.2)
 
 ## 系统支持
 
 - 源码可在绝大多数支持Python 3.x和Opencv的平台上跑起来。
 - 发行版exe程序：
-  - 支持 win10 x64 。
+  - 支持 win10、win11。
   - 支持 win7 x64 sp1 及以上版本。若您无法打开本软件，请检查是否已打系统补丁 KB2533623 、KB2999226 。
 
 ## Umi-系列图片处理软件
@@ -77,10 +77,14 @@ Python用户：下载源码，安装好Opencv等所需模块。
     ```
   这个崩溃貌似由opencv引起，但触发在tkinter的事件循环中(执行完业务函数以后)，所以没有办法捕捉到。采用点击左上角按钮加载预览图片则没有这个问题。对于普通sRGB图片，貌似两种方法加载预览都不会有事。保险起见，不建议使用拖入的方式加载预览。
   - 注，以上“拖入”指在参数配置的辅窗口。在批量处理的主界面直接拖入文件是没有半点问题的。
-- 使用`pyinstaller`打包，参数为
-  ```pyinstaller -F -w -i icon/icon.ico -n "Umi-CUT 批量图片去黑边" main.py```
+- 使用`pyinstaller`打包，可使用 `to_exe.py` 一键打包。
 
 ## 更新日志
+
+##### v1.0.2 `2022.10.17`
+
+- 新功能：自动裁切边缘颜色可切换黑边/白边。
+- 修复了漏洞：手动裁剪数值不合法时的异常。
 
 ##### v1.0.1 `2022.4.19`
 
