@@ -295,8 +295,9 @@ class Win:
                 ("下 " if c["isBorderCut"][1] else "") +\
                 ("左 " if c["isBorderCut"][2] else "") +\
                 ("右 " if c["isBorderCut"][3] else "")
+            bcolor = '白色' if c['borderColor'] == 0 else '黑色'
             self.strBorderCut.set(
-                f"已启用自动去黑边\n方向：{s}\n\n中值滤波孔径：{c['medianBlur']}\n\n边框深色阈值：{c['threshold']}")
+                f"已启用自动去黑边\n方向：{s}\n\n边缘颜色：{bcolor}\n\n中值滤波孔径：{c['medianBlur']}\n\n边框深色阈值：{c['threshold']}")
         else:
             self.strBorderCut.set("未启用自动去黑边")
         if c["resizeMode"] == 0:

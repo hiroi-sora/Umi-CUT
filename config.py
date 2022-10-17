@@ -14,6 +14,7 @@ ConfigDict = {
     "isBorderCut": [True, True, True, True],  # 边缘是否裁剪，[上,下,左,右]
     "medianBlur": 3,  # 中值滤波 孔径的线型尺寸，奇数。0为关闭。
     "threshold": 0,  # 二值化的阈值。
+    "borderColor": 0,  # 边缘颜色，0黑1白。（TODO：任意颜色）
     # 3. 重设大小相关
     "resizeMode": 0,  # 0不重设，1按倍数缩放，2指定宽度，3指定高度
     "resizeScale": 1,
@@ -33,6 +34,7 @@ ConfigDict = {
 SaveItem = [
     "medianBlur",
     "threshold",
+    "borderColor",
     "saveExt",
     "pngCompression",
     "jpegQuality",

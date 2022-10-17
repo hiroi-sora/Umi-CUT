@@ -45,6 +45,7 @@ class imgEditWin:
                 "isBorderCut": [  # 边缘是否裁剪，[上,下,左,右]
                     tk.BooleanVar(), tk.BooleanVar(), tk.BooleanVar(), tk.BooleanVar(),
                 ],
+                "borderColor": tk.IntVar(),  # 边缘颜色，0黑1白。
                 "medianBlur": tk.IntVar(),  # 中值滤波 孔径的线型尺寸，奇数。0为关闭。
                 "threshold": tk.IntVar(),  # 二值化的阈值。
                 # 3. 重设大小相关
@@ -79,7 +80,7 @@ class imgEditWin:
                         self.saveTimer = None
                     self.saveTimer = self.win.after(200, configSave)
                 reDraw = ["isManualCut", "manualCutArea",  # 改变后需要重绘的项目
-                          "isBorderCut", "medianBlur", "threshold"]
+                          "isBorderCut", "medianBlur", "threshold", "borderColor"]
                 if not self.isLoading and key in reDraw:  # 非加载中才能用
                     if self.drawTimer:  # 计时器已存在，则停止已存在的
                         self.win.after_cancel(self.drawTimer)
@@ -168,20 +169,24 @@ class imgEditWin:
                     column=2, row=1, sticky="w")
                 tk.Checkbutton(fr, text="右", variable=self.cfgVar["isBorderCut"][3]).grid(
                     column=3, row=1, sticky="w")
-                tk.Label(fr, text="中值滤波:").grid(
-                    column=0, row=3, columnspan=2, sticky="w")
+                tk.Label(fr, text="边缘颜色:").grid(
+                    column=0, row=2, columnspan=2, sticky="w")
+                tk.Radiobutton(
+                    fr, text='黑', variable=self.cfgVar["borderColor"], value=0).grid(
+                    column=2, row=2, sticky="w")
+                tk.Radiobutton(
+                    fr, text='白', variable=self.cfgVar["borderColor"], value=1).grid(
+                    column=3, row=2, sticky="w")
+                tk.Label(fr, text="中值滤波( >0奇数 ):").grid(
+                    column=0, row=3, columnspan=3, sticky="w")
                 tk.Entry(fr, width=5, textvariable=self.cfgVar["medianBlur"]).grid(
-                    column=2, row=3, sticky="w")
-                tk.Label(fr, text="过滤黑边杂色。0或>0奇数", fg="gray").grid(
-                    column=0, row=4, sticky="w", columnspan=5)
-                tk.Label(fr, text="阈值:").grid(
-                    column=0, row=5, columnspan=2, sticky="w")
+                    column=3, row=3, sticky="w")
+                tk.Label(fr, text="阈值( 0~255 ):").grid(
+                    column=0, row=5, columnspan=3, sticky="w")
                 tk.Entry(fr, width=5, textvariable=self.cfgVar["threshold"]).grid(
-                    column=2, row=5, sticky="w")
-                tk.Label(fr, text="深色识别阈值。0-255", fg="gray").grid(
-                    column=0, row=6, sticky="w", columnspan=5)
-                # tk.Label(fr, text="↓ 虚线框为去黑边裁剪框(最终输出)", fg="gray").grid(
-                #     column=0, row=10, columnspan=10, sticky="w")
+                    column=3, row=5, sticky="w")
+                tk.Label(fr, text="↓ 虚线框为去黑边裁剪框(最终输出)", fg="gray").grid(
+                    column=0, row=10, columnspan=10, sticky="w")
             initBorderCut()
 
             def initResize():  # 初始化重设大小设置

@@ -46,15 +46,22 @@ class imgProssing:
             elif threshold < 0:
                 threshold = 0
                 Config.set("threshold", 0)
-            img = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)[1]
-            imgBina = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # 改为单通道
-            # self.img["binary"] = imgBina
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # 改为单通道
+            # 二值化
+            bColor = Config.get("borderColor")
+            if bColor == 0:  # 黑
+                img = cv2.threshold(
+                    img, threshold, 255, cv2.THRESH_BINARY)[1]
+            elif bColor == 1:  # 白
+                img = cv2.threshold(
+                    img, 255-threshold, 255, cv2.THRESH_BINARY_INV)[1]
+            # self.img["binary"] = img
             # 2.3. 获取边缘位置 上下左右
-            borderY, borderX = np.where(imgBina == 255)
+            borderY, borderX = np.where(img == 255)
             if len(borderY) == 0 or len(borderX) == 0:
                 border = (0, 0, 0, 0)  # 参数错误，给个0值
             else:
-                shape = imgBina.shape
+                shape = img.shape
                 border = (np.min(borderY) if isCB[0] else 0,
                           np.max(borderY) if isCB[1] else shape[0],
                           np.min(borderX) if isCB[2] else 0,
@@ -114,10 +121,7 @@ Prossing = imgProssing()
 TestPath = r"D:\MyCode\PythonCode\Umi-CUT\测试 IMG_0430.PNG"
 TestPath2 = r"D:\MyCode\PythonCode\Umi-CUT"
 if __name__ == "__main__":
-    Prossing.work(r"D:\MyCode\PythonCode\Umi-CUT\测试 IMG_0430.PNG")
-    Prossing.work(r"D:\MyCode\PythonCode\Umi-CUT\测试图像.png")
-    Prossing.work(r"D:\图片\分类\青空下的加缪\IMG_0542.PNG")
-    Prossing.work(r"D:\MyCode\PythonCode\Umi-CUT\测试 IMG_0430.PNG")
+    Prossing.work(r"D:\test1.png")
     # Prossing.save(TestPath2, "测试图像")
     pass
 
