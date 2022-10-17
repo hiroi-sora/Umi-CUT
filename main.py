@@ -14,7 +14,7 @@ from tkinter import Variable, ttk
 from windnd import hook_dropfiles  # 文件拖拽
 from webbrowser import open as webOpen  # “关于”面板打开项目网址
 
-ProjectVer = "1.0.1"  # 版本号
+ProjectVer = "1.0.2"  # 版本号
 ProjectName = f"Umi-CUT 图片裁剪/去黑边 v{ProjectVer}"  # 名称
 ProjectWeb = "https://github.com/hiroi-sora/Umi-CUT"
 
@@ -295,7 +295,7 @@ class Win:
                 ("下 " if c["isBorderCut"][1] else "") +\
                 ("左 " if c["isBorderCut"][2] else "") +\
                 ("右 " if c["isBorderCut"][3] else "")
-            bcolor = '白色' if c['borderColor'] == 0 else '黑色'
+            bcolor = '黑色' if c['borderColor'] == 0 else '白色'
             self.strBorderCut.set(
                 f"已启用自动去黑边\n方向：{s}\n\n边缘颜色：{bcolor}\n\n中值滤波孔径：{c['medianBlur']}\n\n边框深色阈值：{c['threshold']}")
         else:
