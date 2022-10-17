@@ -28,6 +28,11 @@ class imgProssing:
             if shape[0] == manualCutApply[1] and shape[1] == manualCutApply[0]:  # 符合适用分辨率
                 area = Config.get("manualCutArea")
                 img = img[area[0]:area[1], area[2]:area[3]]
+                print(f'长度！！！！{len(img)}')
+                if len(img) == 0:
+                    self.img["output"] = None
+                    self.border = area
+                    return
         self.img["manualCut"] = img
 
         # 2. 裁剪边缘
@@ -86,6 +91,8 @@ class imgProssing:
         self.img["output"] = img
 
     def save(self, path, name):
+        if self.img["output"] is None:
+            return
         if Config.get("saveExt") == 0:  # png
             ext = ".png"
             params = [cv2.IMWRITE_PNG_COMPRESSION,

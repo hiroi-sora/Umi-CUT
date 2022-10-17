@@ -317,14 +317,18 @@ class imgEditWin:
                 area = Config.get("manualCutArea")[:]  # 重新深拷贝
             else:
                 area = Config.get("manualCutArea")[:]
-                if area[0] < 0:
-                    area[0] = 0
-                if area[2] < 0:
-                    area[2] = 0
-                if area[1] > self.imgSize[1]:
-                    area[1] = self.imgSize[1]
-                if area[3] > self.imgSize[0]:
-                    area[3] = self.imgSize[0]
+                # 防止出界
+                for i in (0, 1, 2, 3):
+                    if area[i] < 0:
+                        area[i] = 0
+                    wh = 1 if i in (0, 1) else 0
+                    if area[i] > self.imgSize[wh]:
+                        area[i] = self.imgSize[wh]
+                # 防止相反
+                if area[0] > area[1]:
+                    area[1] = area[0]
+                if area[2] > area[3]:
+                    area[3] = area[2]
                 for i in range(4):  # 设回
                     Config.set("manualCutArea", area[i], i)
             # 计算画板映射值
