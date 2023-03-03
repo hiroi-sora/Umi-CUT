@@ -38,6 +38,7 @@ SaveItem = [
     "saveExt",
     "pngCompression",
     "jpegQuality",
+    "manualCutArea"
 ]
 
 
@@ -59,7 +60,6 @@ class ConfigModule:
                 self.save()
             except FileNotFoundError:  # 无配置文件
                 self.save()
-        self.save()
         load()  # 加载配置文件
         for key in optVar:
             if key in ConfigDict:
